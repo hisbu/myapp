@@ -32,7 +32,7 @@ pipeline {
     stage ('Test docker image'){
       steps {
         sh 'docker run -d --rm --name testImages -p 8081:80 hisbu/project-pipeline'
-        input message: "selesai test docker image? (Click procced to continue!)"
+        // input message: "selesai test docker image? (Click procced to continue!)"
       }
     }
     stage ('Clean updocker test'){
@@ -45,7 +45,7 @@ pipeline {
         script{
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
             app.push("${DOCKER_TAG}")
-            // app.push("latest")
+            app.push("latest")
           }
         }
       }
@@ -55,15 +55,15 @@ pipeline {
         sh 'docker rmi hisbu/project-pipeline'
       }
     }
-    // stage('Apply Kubernetes files') {
-    //     steps{
-    //       sh "chmod +x changeTag.sh"
-    //       sh "./changeTag.sh ${DOCKER_TAG}"
-    //       withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://34.87.80.237']) {
-    //         sh 'kubectl apply -f reactapp-config.k8s.yaml'
-    //       }
-    //     }
-    // }
+    stage('Apply Kubernetes files') {
+        steps{
+          sh "chmod +x changeTag.sh"
+          sh "./changeTag.sh ${DOCKER_TAG}"
+          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://34.87.80.237']) {
+            sh 'kubectl apply -f reactapp-config.k8s.yaml'
+          }
+        }
+    }
     // stage ('Deploy to kubernetes') {
     //   steps{
     //     sh "chmod +x changeTag.sh"
