@@ -25,7 +25,7 @@ pipeline {
     stage ('Build Docker Image'){
       steps {
         script {
-          app = docker.build("hisbu/project-pipeline")
+          app = docker.build("hisbu/project-myapp")
         }
       }
     }
@@ -35,26 +35,26 @@ pipeline {
         input message: "selesai test docker image? (Click procced to continue!)"
       }
     }
-    // stage ('Clean updocker test'){
-    //   steps {
-    //     sh 'docker stop testImages'
-    //   }
-    // }
-    // stage ('push imate to registry'){
-    //   steps {
-    //     script{
-    //       docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
-    //         app.push("${DOCKER_TAG}")
-    //         app.push("latest")
-    //       }
-    //     }
-    //   }
-    // }
-    // stage ('celan up image'){
-    //   steps {
-    //     sh 'docker rmi hisbu/project-pipeline'
-    //   }
-    // }
+    stage ('Clean updocker test'){
+      steps {
+        sh 'docker stop testImages'
+      }
+    }
+    stage ('push imate to registry'){
+      steps {
+        script{
+          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
+            app.push("${DOCKER_TAG}")
+            app.push("latest")
+          }
+        }
+      }
+    }
+    stage ('celan up image'){
+      steps {
+        sh 'docker rmi hisbu/project-pipeline'
+      }
+    }
     // stage('Apply Kubernetes files') {
     //     steps{
     //       sh "chmod +x changeTag.sh"
