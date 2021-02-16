@@ -44,8 +44,8 @@ pipeline {
       steps {
         script{
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
-            app.push("${DOCKER_TAG}")
-            app.push("latest")
+            // app.push("${DOCKER_TAG}")
+            // app.push("latest")
           }
         }
       }
