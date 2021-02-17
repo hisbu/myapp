@@ -30,7 +30,7 @@ spec:
   selector:
     name: react-app2
   ports:
-    - port: 3000
+    - port: 80
       targetPort: 80
     
     
