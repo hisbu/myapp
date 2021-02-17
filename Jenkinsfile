@@ -59,7 +59,7 @@ pipeline {
         steps{
           sh "chmod +x changeTag.sh"
           sh "./changeTag.sh ${DOCKER_TAG}"
-          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://34.87.80.237']) {
+          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://35.184.41.38']) {
             sh 'kubectl apply -f reactapp-config.k8s.yaml'
           }
         }
