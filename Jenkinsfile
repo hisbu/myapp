@@ -32,7 +32,7 @@ pipeline {
     }
     stage ('Test docker image'){
       steps {
-        sh 'docker run -d --rm --name testImages -p 8081:80 hisbu/project-pipeline'
+        sh 'docker run -d --rm --name testImages -p 8081:80 hisbu/project-myapp'
         input message: "selesai test docker image? (Click procced to continue!)"
       }
     }
