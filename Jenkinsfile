@@ -23,13 +23,13 @@ pipeline {
         sh 'npm run build'
       }
     }
-    // stage ('Build Docker Image'){
-    //   steps {
-    //     script {
-    //       app=docker.build("hisbu/project-myapp")
-    //     }
-    //   }
-    // }
+    stage ('Build Docker Image'){
+      steps {
+        script {
+          app=docker.build("hisbu/project-myapp")
+        }
+      }
+    }
     // stage ('Test docker image'){
     //   steps {
     //     sh 'docker run -d --rm --name testImages -p 8081:80 hisbu/project-pipeline'
