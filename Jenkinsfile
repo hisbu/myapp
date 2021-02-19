@@ -56,15 +56,15 @@ pipeline {
         sh 'docker rmi hisbu/project-pipeline'
       }
     }
-    // stage('Apply Kubernetes files') {
-    //     steps{
-    //       sh "chmod +x changeTag.sh"
-    //       sh "./changeTag.sh ${DOCKER_TAG}"
-    //       withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://35.184.41.38']) {
-    //         sh 'kubectl apply -f reactapp-config.k8s.yaml'
-    //       }
-    //     }
-    // }
+    stage('Apply Kubernetes files') {
+        steps{
+          sh "chmod +x changeTag.sh"
+          sh "./changeTag.sh ${DOCKER_TAG}"
+          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://35.184.41.38']) {
+            sh 'kubectl apply -f reactapp-config.k8s.yaml'
+          }
+        }
+    }
   }
 }
 
