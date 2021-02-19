@@ -38,7 +38,7 @@ pipeline {
     }
     stage ('Clean updocker test'){
       steps {
-        sh 'docker stop testImages'
+        sh 'docker stop hisbu/project-myapp'
       }
     }
     stage ('push imate to registry'){
