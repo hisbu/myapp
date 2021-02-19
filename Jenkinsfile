@@ -53,7 +53,7 @@ pipeline {
     }
     stage ('celan up image'){
       steps {
-        sh 'docker rmi hisbu/project-pipeline'
+        sh 'docker rmi hisbu/project-myapp'
       }
     }
     stage('Apply Kubernetes files') {
