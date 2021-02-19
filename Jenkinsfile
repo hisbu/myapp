@@ -36,11 +36,11 @@ pipeline {
         input message: "Selesai test docker image? (Click procced to continue!)"
       }
     }
-    // stage ('Clean updocker test'){
-    //   steps {
-    //     sh 'docker stop testImages'
-    //   }
-    // }
+    stage ('Clean updocker test'){
+      steps {
+        sh 'docker stop testImages'
+      }
+    }
     // stage ('push imate to registry'){
     //   steps {
     //     script{
