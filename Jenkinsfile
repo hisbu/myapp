@@ -33,7 +33,7 @@ pipeline {
     stage ('Test docker image'){
       steps {
         sh 'docker run -d --rm --name testImages -p 8088:80 hisbu/project-myapp'
-        input message: "Selesai test docker image? (Click procced to continue!)"
+        input message: "Sudah elesai test docker image? (Click procced to continue!)"
       }
     }
     stage ('Clean updocker test'){
