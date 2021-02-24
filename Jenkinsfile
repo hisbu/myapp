@@ -41,7 +41,7 @@ pipeline {
         sh 'docker stop testImages'
       }
     }
-    stage ('push imate to registry'){
+    stage ('push image to registry'){
       steps {
         script{
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
@@ -60,7 +60,7 @@ pipeline {
         steps{
           sh "chmod +x changeTag.sh"
           sh "./changeTag.sh ${DOCKER_TAG}"
-          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://35.184.41.38']) {
+          withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://34.101.116.68']) {
             sh 'kubectl apply -f reactapp-config.k8s.yaml'
           }
         }

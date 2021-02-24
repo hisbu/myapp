@@ -9,6 +9,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <p>env: {process.env.REACT_APP_NQ_API_PORT}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
